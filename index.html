@@ -56,7 +56,7 @@
 
 			if ( ! Detector.webgl ) {
 
-				Detector.addGetWebGLMessage();
+				//Detector.addGetWebGLMessage();
 				document.getElementById( 'container' ).innerHTML = "";
 
 			}
@@ -89,10 +89,10 @@
 
 				controls.movementSpeed = 1000;
 				controls.lookSpeed = 0.125;
-				controls.lookVertical = true;
-				controls.constrainVertical = true;
-				controls.verticalMin = 1.1;
-				controls.verticalMax = 2.2;
+				controls.lookVertical = false;
+				controls.constrainVertical = false;
+				//controls.verticalMin = 2;
+				//controls.verticalMax = 2;
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0xffffff, 0.00015 );
@@ -346,7 +346,6 @@
 
 					}
 
-					quality *= 4
 
 				}
 
