@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<!--minecraft three.js example code-->
+<!--minecraft three.js example code edited for the 3D Maze Prototype-->
 <html lang="en">
 	<head>
 		<title>three.js webgl - geometry - minecraft - ao</title>
@@ -78,6 +78,7 @@
 			init();
 			animate();
 
+			//three.js initialization function
 			function init() {
 
 				container = document.getElementById( 'container' );
@@ -89,8 +90,11 @@
 
 				controls.movementSpeed = 1000;
 				controls.lookSpeed = 0.125;
+		
+				//restrict the player's ability to look vertically but do not add a vertical limit
 				controls.lookVertical = false;
 				controls.constrainVertical = false;
+				//vertical limits used by three.js example
 				//controls.verticalMin = 2;
 				//controls.verticalMax = 2;
 
@@ -104,6 +108,7 @@
 
 				var matrix = new THREE.Matrix4();
 
+				//three.js plane geometries
 				var pxGeometry = new THREE.PlaneGeometry( 100, 100 );
 				pxGeometry.faces[ 0 ].vertexColors = [ light, shadow, light ];
 				pxGeometry.faces[ 1 ].vertexColors = [ shadow, shadow, light ];
@@ -276,25 +281,31 @@
 
 				}
 
+				//three.js minecraft texture
 				var texture = new THREE.TextureLoader().load( 'textures/minecraft/atlas.png' );
 				texture.magFilter = THREE.NearestFilter;
 				texture.minFilter = THREE.LinearMipMapLinearFilter;
 
+				//three.js putting the geometries together to create the plane and adding it to the scene
 				var mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { map: texture, vertexColors: THREE.VertexColors } ) );
 				scene.add( mesh );
 
+				//three.js adding a light source to the scene
 				var ambientLight = new THREE.AmbientLight( 0xcccccc );
 				scene.add( ambientLight );
 
+				//three.js adding another light source to the scene
 				var directionalLight = new THREE.DirectionalLight( 0xffffff, 2 );
 				directionalLight.position.set( 1, 1, 0.5 ).normalize();
 				scene.add( directionalLight );
 
+				//three.js setting up the renderer
 				renderer = new THREE.WebGLRenderer();
 				renderer.setClearColor( 0xffffff );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 
+				//three.js adding the renderer and the stats to the html so the scene will appear in the page
 				container.innerHTML = "";
 
 				container.appendChild( renderer.domElement );
@@ -307,7 +318,8 @@
 				window.addEventListener( 'resize', onWindowResize, false );
 
 			}
-
+	
+			//three.js event listener for resizing the window
 			function onWindowResize() {
 
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -319,6 +331,8 @@
 
 			}
 
+			//three.js retrieves the minecraft texture 
+			//not used in my test page because I do not have the texture
 			function loadTexture( path, callback ) {
 
 				var image = new Image();
@@ -330,6 +344,8 @@
 
 			}
 
+			//three.js original function created random heights based on an increasing quality to create hills
+			//I use it to create a flat plane (quality does not change) with random single blocks to test collisions
 			function generateHeight( width, height ) {
 
 				var data = [], perlin = new ImprovedNoise(),
@@ -353,14 +369,14 @@
 
 			}
 
+			//three.js get Y direction
 			function getY( x, z ) {
 
 				return ( data[ x + z * worldWidth ] * 0.2 ) | 0;
 
 			}
 
-			//
-
+			//three.js
 			function animate() {
 
 				requestAnimationFrame( animate );
@@ -370,6 +386,7 @@
 
 			}
 
+			//three.js
 			function render() {
 
 				controls.update( clock.getDelta() );
@@ -381,33 +398,3 @@
 
 	</body>
 </html>
-
-
-
-<!--Mad dog example code-->
-<!--<html>
-	<title>WebGL Practice Website</title>
-	
-	<script type="text/javascript" src="js/three.min.js">
-		</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
-		</script>
-	
-	<style>
-	
-		body{
-			margin:0;
-			overflow:hidden;
-		}
-	</style>
-	
-	<body>
-		
-		<div id = "webGL-container">
-		</div>
-		
-		<script type="text/javascript" src="js/main.js">
-		</script>
-		
-	</body>
-</html>-->
