@@ -87,8 +87,10 @@
 							cubes2[cubecount].position.z = z;
 							cubes[cubecount].position.y = 2;
 							cubes2[cubecount].position.y = 6;
-							cubes[cubecount].material.diffuseTexture = new BABYLON.FireProceduralTexture2("firePT", 256, scene);
-							cubes2[cubecount].material.diffuseTexture = new BABYLON.FireProceduralTexture2("firePT", 256, scene);
+							//cubes[cubecount].material.diffuseTexture = new BABYLON.FireProceduralTexture2("firePT", 256, scene);
+							//cubes2[cubecount].material.diffuseTexture = new BABYLON.FireProceduralTexture2("firePT", 256, scene);
+							cubes[cubecount].material = new BABYLON.StandardMaterial("texture1", scene);
+							cubes2[cubecount].material = new BABYLON.StandardMaterial("texture1", scene);
 							cubes[cubecount].material.diffuseTexture = new BABYLON.Texture("textures/floor.png", scene);
 							cubes2[cubecount].material.diffuseTexture = new BABYLON.Texture("textures/floor.png", scene);
 							cubes[cubecount].checkCollisions = true;
