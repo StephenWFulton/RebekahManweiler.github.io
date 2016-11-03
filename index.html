@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
-    <title>Babylon - Getting Started</title>
-    <!--- link to the last version of babylon --->
+    <title>MazeWalker</title>
     <script src="http://www.babylonjs.com/hand.minified-1.2.js"></script>
 	<script src="http://www.babylonjs.com/cannon.js"></script>
 	<script src="http://www.babylonjs.com/oimo.js"></script>
 	<script src="http://www.babylonjs.com/babylon.js"></script>
+	<script src="Babylon.js-master/proceduralTexturesLibrary/proceduralTextures/fire/babylon.fireProceduralTexture.ts"></script>
 	
     <style>
         html, body {
@@ -75,6 +75,10 @@
 							var temp = x;
 							var temp2 = z;
 				
+							//var fire = new BABYLON.FireProceduralTexture2("firePT", 256, scene);
+							//sphere.material.diffuseTexture = fire;
+							
+							
 							cubes[cubecount] = BABYLON.Mesh.CreateBox("cube", 4, scene);
 							cubes2[cubecount] = BABYLON.Mesh.CreateBox("cube", 4, scene);
 							cubes[cubecount].position.x = x;
@@ -83,8 +87,8 @@
 							cubes2[cubecount].position.z = z;
 							cubes[cubecount].position.y = 2;
 							cubes2[cubecount].position.y = 6;
-							cubes[cubecount].material = new BABYLON.StandardMaterial("texture1", scene);
-							cubes2[cubecount].material = new BABYLON.StandardMaterial("texture1", scene);
+							cubes[cubecount].material.diffuseTexture = new BABYLON.FireProceduralTexture2("firePT", 256, scene);
+							cubes2[cubecount].material.diffuseTexture = new BABYLON.FireProceduralTexture2("firePT", 256, scene);
 							cubes[cubecount].material.diffuseTexture = new BABYLON.Texture("textures/floor.png", scene);
 							cubes2[cubecount].material.diffuseTexture = new BABYLON.Texture("textures/floor.png", scene);
 							cubes[cubecount].checkCollisions = true;
